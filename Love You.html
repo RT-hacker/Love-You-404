@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>I love you</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        background-color: pink;
+      }
+      
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+      }
+      
+      label {
+        margin-bottom: 1rem;
+        font-size: 1.2rem;
+      }
+      
+      input[type="text"] {
+        padding: 0.5rem;
+        font-size: 1rem;
+        border-radius: 0.25rem;
+        border: none;
+        box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.2);
+        margin-bottom: 1rem;
+        width: 15rem;
+      }
+      
+      button[type="submit"] {
+        padding: 0.5rem 1rem;
+        background-color: #ff69b4;
+        color: white;
+        border: none;
+        border-radius: 0.25rem;
+        font-size: 1rem;
+        cursor: pointer;
+        box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.2);
+      }
+      
+      .hidden {
+        display: none;
+      }
+      
+      .output {
+        text-align: center;
+        font-size: 3rem;
+        margin: 0;
+        padding: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-shadow: 2px 2px 0 #fff, 4px 4px 0 #ff69b4;
+      }
+
+      .output:hover {
+        color: #ff69b4;
+        animation: rotate 1s ease-in-out;
+      }
+
+      .output span {
+        font-weight: bold;
+        color: red;
+        text-shadow: 2px 2px 0 #fff, 4px 4px 0 #ff69b4;
+        display: inline-block;
+        margin-top: 0.5rem;
+        animation: wiggle 0.5s ease-in-out infinite;
+      }
+
+      .output:hover span {
+        animation: shake 0.5s ease-in-out;
+      }
+      
+      @keyframes rotate {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
+      
+      @keyframes wiggle {
+        0%, 100% { transform: scale(1); }
+        25% { transform: scale(1.2); }
+        50% { transform: scale(0.8); }
+        75% { transform: scale(1.1); }
+      }
+      
+      @keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); }
+        20%, 40%, 60%, 80% { transform: translateX(10px); }
+      }
+    </style>
+  </head>
+  <body>
+    <form id="form" onsubmit="displayMessage(event)">
+      <label for="name">Enter your name:</label>
+      <input type="text" id="name" name="name" placeholder="Enter name" required>
+      <button type="submit">Submit</button>
+    </form>
+    
+    <div id="output" class="hidden"></div>
+    
+    <script>
+      function displayMessage(event) {
+        event.preventDefault();
+                const name = document.getElementById("name").value;
+        const output = document.getElementById("output");
+        output.innerHTML = `<p class="output">I ❤️ you dear <span>${name}</span></p>`;
+        output.classList.remove("hidden");
+        document.getElementById("form").classList.add("hidden");
+      }
+    </script>
+  </body>
+</html>
